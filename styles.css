@@ -119,7 +119,15 @@ section.active { display: flex; }
   transition: opacity 0.25s, transform 0.25s; pointer-events: none;
 }
 .disc-info.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
-.disc-info-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+.disc-info-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; position: relative; }
+.disc-info-close {
+  position: absolute; top: -0.4rem; right: -0.6rem;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+  color: var(--text-muted); width: 26px; height: 26px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 1rem; line-height: 1; transition: all 0.15s;
+}
+.disc-info-close:hover { background: rgba(255,255,255,0.2); color: #fff; }
 .disc-info-sigle {
   background: rgba(255,255,255,0.1); border-radius: 8px;
   padding: 0.3rem 0.6rem; font-size: 1.3rem; font-weight: 800;

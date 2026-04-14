@@ -69,6 +69,7 @@ function showDiscInfo(id, cx, cy, svg) {
     <div class="disc-info-header">
       <div class="disc-info-sigle">${id}</div>
       <div class="disc-info-name">${atb.name}</div>
+      <button class="disc-info-close" onclick="hideDiscInfo()" aria-label="Fermer">&times;</button>
     </div>
     <div class="disc-info-row">
       <span class="disc-info-badge" style="border-left: 3px solid ${FAMILY_COLORS[atb.family] || '#888'}">${atb.classe}</span>
