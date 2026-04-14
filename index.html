@@ -13,11 +13,19 @@
     <div class="logo-icon">AB</div>
     <h1>Antibiogramme Entérobactéries <span>Cours Interne Réa</span></h1>
   </div>
-  <nav>
-    <button class="active" data-tab="explorer">Notre Panel</button>
-    <button data-tab="guide">Guide</button>
-    <button data-tab="tree">Arbre décisionnel</button>
-  </nav>
+  <div class="header-right">
+    <div class="help-toggle">
+      <label id="help-label">
+        <div class="toggle-track" id="help-track"><div class="toggle-thumb"></div></div>
+        Aide
+      </label>
+    </div>
+    <nav>
+      <button class="active" data-tab="explorer">Notre Panel</button>
+      <button data-tab="guide">Guide</button>
+      <button data-tab="tree">Arbre décisionnel</button>
+    </nav>
+  </div>
 </header>
 
 <main>
@@ -73,12 +81,6 @@
   </section>
 </main>
 
-<div class="help-toggle">
-  <label id="help-label">
-    <div class="toggle-track" id="help-track"><div class="toggle-thumb"></div></div>
-    Aide
-  </label>
-</div>
 <div class="disc-info" id="disc-info"></div>
 <div class="kbd-hint"><kbd>Esc</kbd> réinitialiser &nbsp; <kbd>Clic</kbd> détail disque</div>
 
