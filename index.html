@@ -22,7 +22,7 @@
     </div>
     <nav>
       <button class="active" data-tab="explorer">Notre Panel</button>
-      <button data-tab="guide">Guide</button>
+      <button data-tab="guide">β-lactamases</button>
       <button data-tab="tree">Arbre décisionnel</button>
     </nav>
   </div>
@@ -72,7 +72,12 @@
 
   <!-- SECTION 2: GUIDE -->
   <section id="guide">
-    <div class="coming-soon"><h2>Guide d'interprétation</h2><p>En construction</p></div>
+    <div class="guide-steps" id="guide-steps">
+      <div class="guide-step active" data-step="0">β-lactamase ?</div>
+      <div class="guide-step" data-step="1">Classe ?</div>
+      <div class="guide-step" data-step="2">Spectre ?</div>
+    </div>
+    <div class="guide-content" id="guide-content"></div>
   </section>
 
   <!-- SECTION 3: DECISION TREE -->
@@ -85,6 +90,7 @@
 <div class="kbd-hint"><kbd>Esc</kbd> réinitialiser &nbsp; <kbd>Clic</kbd> détail disque</div>
 
 <script src="data.js"></script>
+<script src="guide.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

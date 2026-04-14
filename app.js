@@ -184,6 +184,7 @@ function switchTab(tabId) {
 function init() {
   renderSquarePlate();
   renderRoundPlate();
+  initGuide();
 
   document.querySelectorAll('.family-btn').forEach(btn => {
     btn.addEventListener('click', () => toggleFamilies(JSON.parse(btn.dataset.families)));
