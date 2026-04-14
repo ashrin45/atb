@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antibiogramme Entérobactéries — Cours Interne Réa</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">AB</div>
+    <h1>Antibiogramme Entérobactéries <span>Cours Interne Réa</span></h1>
+  </div>
+  <nav>
+    <button class="active" data-tab="explorer">Notre Panel</button>
+    <button data-tab="guide">Guide</button>
+    <button data-tab="tree">Arbre décisionnel</button>
+  </nav>
+</header>
+
+<main>
+  <!-- SECTION 1: PANEL EXPLORER -->
+  <section id="explorer" class="active">
+    <div class="plates-area">
+      <div class="plate-wrapper">
+        <span class="plate-label">Panel principal</span>
+        <svg id="square-plate" class="plate-svg" viewBox="0 0 460 460"></svg>
+      </div>
+      <div class="plate-wrapper">
+        <span class="plate-label">Panel complémentaire</span>
+        <svg id="round-plate" class="plate-svg" viewBox="0 0 380 380"></svg>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="controls-row">
+        <span class="controls-label">Groupes</span>
+        <button class="family-btn-reset" id="btn-reset" title="Tout afficher">Tout</button>
+        <button class="family-btn" data-families='["peni","peni_inhib","c1g","c2g","c3g","c3g_avi","c4g","carba"]' style="--btn-color:#f87171"><span class="dot"></span>B-lactamines</button>
+        <button class="family-btn" data-families='["aminoside","fq","autre"]' style="--btn-color:#4ade80"><span class="dot"></span>Non B-lactamines</button>
+      </div>
+      <div class="controls-row">
+        <span class="controls-label">B-lactamines</span>
+        <button class="family-btn" data-families='["peni"]' style="--btn-color:var(--peni)"><span class="dot"></span>Pénicillines</button>
+        <button class="family-btn" data-families='["peni","peni_inhib"]' style="--btn-color:var(--peni-inhib)"><span class="dot"></span>Péni + Inhib</button>
+        <button class="family-btn" data-families='["c1g"]' style="--btn-color:var(--c1g)"><span class="dot"></span>C1G</button>
+        <button class="family-btn" data-families='["c2g"]' style="--btn-color:var(--c2g)"><span class="dot"></span>C2G</button>
+        <button class="family-btn" data-families='["c3g"]' style="--btn-color:var(--c3g)"><span class="dot"></span>C3G</button>
+        <button class="family-btn" data-families='["c4g"]' style="--btn-color:var(--c4g)"><span class="dot"></span>C4G</button>
+        <button class="family-btn" data-families='["carba"]' style="--btn-color:var(--carba)"><span class="dot"></span>Carbapénèmes</button>
+        <button class="family-btn" data-families='["c3g_avi"]' style="--btn-color:var(--c3g-avi)"><span class="dot"></span>C3G + Avibactam</button>
+      </div>
+      <div class="controls-row">
+        <span class="controls-label">Autres</span>
+        <button class="family-btn" data-families='["aminoside"]' style="--btn-color:var(--aminoside)"><span class="dot"></span>Aminosides</button>
+        <button class="family-btn" data-families='["fq"]' style="--btn-color:var(--fq)"><span class="dot"></span>Fluoroquinolone</button>
+        <button class="family-btn" data-families='["autre"]' style="--btn-color:var(--autre)"><span class="dot"></span>Autres</button>
+      </div>
+      <div class="active-filters" id="active-filters"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: GUIDE -->
+  <section id="guide">
+    <div class="coming-soon"><h2>Guide d'interprétation</h2><p>En construction</p></div>
+  </section>
+
+  <!-- SECTION 3: DECISION TREE -->
+  <section id="tree">
+    <div class="coming-soon"><h2>Arbre décisionnel</h2><p>En construction</p></div>
+  </section>
+</main>
+
+<div class="disc-info" id="disc-info"></div>
+<div class="kbd-hint"><kbd>Esc</kbd> réinitialiser &nbsp; <kbd>Clic</kbd> détail disque</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
