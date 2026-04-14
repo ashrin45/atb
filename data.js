@@ -84,3 +84,33 @@ const FAMILY_LABELS = {
   c3g: 'C3G', c3g_avi: 'C3G + Avibactam', c4g: 'C4G', carba: 'Carbapénèmes',
   aminoside: 'Aminosides', fq: 'Fluoroquinolone', autre: 'Autres'
 };
+
+// ============================================================
+// BREAKPOINTS (EUCAST / CASFM — Enterobacterales)
+// s = seuil S (≥ = sensible), r = seuil R (< = résistant)
+// Entre les deux = I (intermédiaire / sensible à forte dose)
+// ============================================================
+const BREAKPOINTS = {
+  AX:  { s: 19, r: 19 },
+  TIC: { s: 23, r: 20 },
+  AMC: { s: 19, r: 19 },
+  TPZ: { s: 20, r: 17 },
+  CFR: { s: 18, r: 18 },
+  FEP: { s: 24, r: 21 },
+  CTX: { s: 20, r: 17 },
+  CAZ: { s: 22, r: 19 },
+  CFM: { s: 17, r: 17 },
+  FOX: { s: 19, r: 19 },
+  ETP: { s: 25, r: 22 },
+  MEM: { s: 22, r: 16 },
+  CTV: { s: 13, r: 13 },
+  MEC: { s: 15, r: 15 },
+  TEM: { s: 12, r: 12 },
+  CN:  { s: 17, r: 14 },
+  TOB: { s: 17, r: 14 },
+  AK:  { s: 18, r: 15 },
+  OFX: { s: 22, r: 19 },
+  SXT: { s: 16, r: 13 },
+  FF:  { s: 24, r: 24 },
+  F:   { s: 11, r: 11 },
+};

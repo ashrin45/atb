@@ -119,9 +119,11 @@ function zoneToSvgRadius(diameter) {
   return Math.max(22, 22 + (diameter - 6) * 0.87);
 }
 
-function zoneToStatus(diameter) {
-  if (diameter >= 20) return 'S';
-  if (diameter >= 14) return 'I';
+function zoneToStatus(diameter, atbId) {
+  const bp = BREAKPOINTS[atbId];
+  if (!bp) return diameter >= 20 ? 'S' : diameter >= 14 ? 'I' : 'R';
+  if (diameter >= bp.s) return 'S';
+  if (diameter >= bp.r) return 'I';
   return 'R';
 }
 
@@ -192,7 +194,7 @@ function updateGuideZones() {
   document.querySelectorAll('.guide-zone').forEach(el => {
     const atbId = el.dataset.atb;
     const diameter = getZoneDiameter(atbId, currentSpectre, currentIntensity);
-    const status = zoneToStatus(diameter);
+    const status = zoneToStatus(diameter, atbId);
     const r = zoneToSvgRadius(diameter);
 
     el.setAttribute('r', r);
