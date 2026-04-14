@@ -225,6 +225,19 @@ section.active { display: flex; }
   letter-spacing: 0.08em; min-width: 70px; text-align: right; font-weight: 600;
 }
 
+/* Class buttons */
+.class-buttons { display: flex; gap: 0.3rem; }
+.class-btn {
+  background: var(--bg-button); border: 1.5px solid rgba(255,255,255,0.08);
+  color: var(--text-muted); padding: 0.4rem 1rem; border-radius: 8px;
+  cursor: pointer; font-size: 0.82rem; font-weight: 600; transition: all 0.2s;
+}
+.class-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+.class-btn.active {
+  color: #fff; background: rgba(255,255,255,0.1);
+  border-color: var(--accent); box-shadow: 0 0 12px rgba(251,191,36,0.15);
+}
+
 /* Spectre buttons */
 .spectre-buttons { display: flex; gap: 0.3rem; }
 .spectre-btn {

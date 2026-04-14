@@ -87,8 +87,41 @@ const PHENOTYPES = {
   }
 };
 
+// ============================================================
+// CLASSE C — Céphalosporinase (AmpC)
+// Pas de spectre, seulement intensité
+// ============================================================
+PHENOTYPES.case_c = {
+  label: 'Céphalosporinase',
+  zones: {
+    AX:  [[0,6],[100,6]],
+    CFR: [[0,6],[100,6]],
+    AMC: [[0,6],[100,6]],
+    FOX: [[0,6],[100,6]],
+    TIC: [[0,26],[40,22],[60,9],[100,9]],
+    CTX: [[0,26],[40,18],[60,6],[100,6]],
+    CAZ: [[0,25],[40,20],[60,8],[100,6]],
+    CFM: [[0,22],[40,16],[60,6],[100,6]],
+    TPZ: [[0,24],[40,22],[60,12],[100,12]],
+    FEP: [[0,31],[60,28],[80,26],[100,25]],
+    ETP: [[0,31],[80,25],[100,21]],
+    MEM: [[0,30],[100,28]],
+    CTV: [[0,29],[100,23]],
+    MEC: [[0,27],[100,22]],
+    TEM: [[0,23],[60,20],[100,17]],
+    CN:  [[0,22],[100,22]],
+    TOB: [[0,21],[100,21]],
+    AK:  [[0,24],[100,22]],
+    OFX: [[0,33],[100,28]],
+    SXT: [[0,29],[100,24]],
+    FF:  [[0,32],[100,30]],
+    F:   [[0,14],[100,10]],
+  }
+};
+
 const SPECTRE_ORDER = ['pase', 'blse', 'kpc'];
 
+let currentClass = 'A';
 let currentSpectre = 'pase';
 let currentIntensity = 0;
 
@@ -190,10 +223,16 @@ function renderGuideDisc(svg, id, cx, cy) {
 // ============================================================
 // UPDATE ZONES
 // ============================================================
+function getActivePhenotype() {
+  return currentClass === 'A' ? currentSpectre : 'case_c';
+}
+
 function updateGuideZones() {
+  const phenoKey = getActivePhenotype();
+
   document.querySelectorAll('.guide-zone').forEach(el => {
     const atbId = el.dataset.atb;
-    const diameter = getZoneDiameter(atbId, currentSpectre, currentIntensity);
+    const diameter = getZoneDiameter(atbId, phenoKey, currentIntensity);
     const status = zoneToStatus(diameter, atbId);
     const r = zoneToSvgRadius(diameter);
 
@@ -202,10 +241,19 @@ function updateGuideZones() {
     el.setAttribute('fill', statusFill(status));
   });
 
-  const label = PHENOTYPES[currentSpectre].label;
+  const label = PHENOTYPES[phenoKey].label;
   const intensityLabel = currentIntensity < 30 ? 'bas niveau' : currentIntensity < 70 ? 'niveau intermédiaire' : 'haut niveau';
   document.getElementById('guide-title').textContent = `${label} — ${intensityLabel}`;
 
+  // Update class buttons
+  document.querySelectorAll('.class-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.class === currentClass);
+  });
+
+  // Show/hide spectre row
+  document.getElementById('spectre-row').style.display = currentClass === 'A' ? 'flex' : 'none';
+
+  // Update spectre buttons
   document.querySelectorAll('.spectre-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.spectre === currentSpectre);
   });
@@ -220,6 +268,18 @@ function initGuide() {
   renderGuideSquarePlate();
   renderGuideRoundPlate();
 
+  // Class buttons
+  document.querySelectorAll('.class-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentClass = btn.dataset.class;
+      currentIntensity = 0;
+      document.getElementById('intensity-slider').value = 0;
+      if (currentClass === 'A') currentSpectre = 'pase';
+      updateGuideZones();
+    });
+  });
+
+  // Spectre buttons
   document.querySelectorAll('.spectre-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       currentSpectre = btn.dataset.spectre;
