@@ -3,6 +3,7 @@
 // ============================================================
 let activeFamilies = new Set();
 let selectedDisc = null;
+let helpMode = false;
 
 // ============================================================
 // SVG HELPERS
@@ -75,7 +76,7 @@ function showDiscInfo(id, cx, cy, svg) {
       <span class="disc-info-badge" style="border-left: 3px solid ${FAMILY_COLORS[atb.family] || '#888'}">${atb.classe}</span>
       <span class="disc-info-badge">${atb.charge}</span>
     </div>
-    ${atb.note ? `<div class="disc-info-note">${atb.note}</div>` : ''}
+    ${atb.note && helpMode ? `<div class="disc-info-note">${atb.note}</div>` : ''}
   `;
 
   const isMobile = window.innerWidth <= 900;
@@ -196,6 +197,18 @@ function init() {
 
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.disc-group') && !e.target.closest('.disc-info')) hideDiscInfo();
+  });
+
+  // Help mode toggle
+  const helpTrack = document.getElementById('help-track');
+  helpTrack.addEventListener('click', () => {
+    helpMode = !helpMode;
+    helpTrack.classList.toggle('on', helpMode);
+    // Refresh tooltip if one is open
+    if (selectedDisc) {
+      const g = document.querySelector(`.disc-group[data-id="${selectedDisc}"]`);
+      if (g) g.click();
+    }
   });
 
   document.addEventListener('keydown', (e) => {
