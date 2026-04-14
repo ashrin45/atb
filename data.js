@@ -91,26 +91,26 @@ const FAMILY_LABELS = {
 // Entre les deux = I (intermédiaire / sensible à forte dose)
 // ============================================================
 const BREAKPOINTS = {
-  AX:  { s: 19, r: 19 },
-  TIC: { s: 23, r: 20 },
-  AMC: { s: 19, r: 19 },
-  TPZ: { s: 20, r: 17 },
-  CFR: { s: 18, r: 18 },
-  FEP: { s: 24, r: 21 },
-  CTX: { s: 20, r: 17 },
-  CAZ: { s: 22, r: 19 },
-  CFM: { s: 17, r: 17 },
-  FOX: { s: 19, r: 19 },
-  ETP: { s: 25, r: 22 },
-  MEM: { s: 22, r: 16 },
-  CTV: { s: 13, r: 13 },
-  MEC: { s: 15, r: 15 },
-  TEM: { s: 12, r: 12 },
-  CN:  { s: 17, r: 14 },
-  TOB: { s: 17, r: 14 },
-  AK:  { s: 18, r: 15 },
-  OFX: { s: 22, r: 19 },
-  SXT: { s: 16, r: 13 },
-  FF:  { s: 24, r: 24 },
-  F:   { s: 11, r: 11 },
+  AX:  { s: 19, r: 19 },   // Amoxicilline — pas d'I
+  TIC: { s: 23, r: 23 },   // Ticarcilline dépistage — pas d'I
+  AMC: { s: 19, r: 19 },   // Amox-clav — pas d'I
+  TPZ: { s: 20, r: 20 },   // Pipé-tazo — pas d'I
+  CFR: { s: 14, r: 14 },   // Céfalexine/Céfadroxil dépistage — pas d'I
+  FEP: { s: 27, r: 24 },   // Céfépime — I entre 24-26
+  CTX: { s: 20, r: 17 },   // Céfotaxime — I entre 17-19
+  CAZ: { s: 22, r: 19 },   // Ceftazidime — I entre 19-21
+  CFM: { s: 17, r: 17 },   // Céfixime cystites — pas d'I
+  FOX: { s: 18, r: 18 },   // Céfoxitine E. coli — pas d'I
+  ETP: { s: 23, r: 23 },   // Ertapénème — pas d'I
+  MEM: { s: 22, r: 16 },   // Méropénème — I entre 16-21
+  CTV: { s: 13, r: 13 },   // Ceftazidime-avibactam — pas d'I
+  MEC: { s: 15, r: 15 },   // Mécillinam cystites — pas d'I
+  TEM: { s: 20, r: 17 },   // Témocilline IU — I entre 17-19
+  CN:  { s: 17, r: 14 },   // Gentamicine
+  TOB: { s: 17, r: 14 },   // Tobramycine
+  AK:  { s: 18, r: 15 },   // Amikacine
+  OFX: { s: 22, r: 19 },   // Ofloxacine
+  SXT: { s: 16, r: 13 },   // Bactrim
+  FF:  { s: 24, r: 24 },   // Fosfomycine — pas d'I
+  F:   { s: 11, r: 11 },   // Nitrofurantoïne — pas d'I
 };
