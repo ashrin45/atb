@@ -1,42 +1,88 @@
 // ============================================================
 // SIMULATEUR β-LACTAMASES — Classe A
-// 2 axes : Spectre (discret) × Intensité (continu)
+// Keyframe system: each ATB has [[intensity%, zone_mm], ...]
 // ============================================================
 
-// Zone diameters: [at intensity=0%, at intensity=100%]
-// Interpolated linearly based on intensity slider
 const PHENOTYPES = {
   pase: {
     label: 'Pénicillinase',
     zones: {
-      AX: [18, 6], TIC: [20, 6], AMC: [25, 10], TPZ: [24, 13],
-      CFR: [19, 13], FEP: [35, 30], CTX: [32, 25], CAZ: [27, 22],
-      CFM: [30, 21], FOX: [28, 28], ETP: [34, 31], MEM: [36, 32],
-      CTV: [29, 26], MEC: [28, 6], TEM: [24, 21],
-      CN: [23, 22], TOB: [24, 21], AK: [21, 21],
-      OFX: [37, 31], SXT: [29, 30], FF: [29, 25], F: [21, 20],
+      AX:  [[0,22],[3,13],[20,6],[100,6]],
+      TIC: [[0,22],[10,13],[25,6],[100,6]],
+      AMC: [[0,25],[40,25],[70,14],[100,10]],
+      TPZ: [[0,25],[60,25],[85,16],[100,13]],
+      CFR: [[0,19],[60,19],[85,14],[100,13]],
+      MEC: [[0,28],[80,28],[100,6]],
+      FEP: [[0,35],[100,30]],
+      CTX: [[0,32],[100,25]],
+      CAZ: [[0,27],[100,22]],
+      CFM: [[0,30],[100,21]],
+      FOX: [[0,28],[100,28]],
+      ETP: [[0,34],[100,31]],
+      MEM: [[0,36],[100,32]],
+      CTV: [[0,29],[100,26]],
+      TEM: [[0,24],[100,21]],
+      AK:  [[0,21],[100,21]],
+      CN:  [[0,23],[100,22]],
+      TOB: [[0,24],[100,21]],
+      OFX: [[0,37],[100,31]],
+      SXT: [[0,29],[100,30]],
+      FF:  [[0,29],[100,25]],
+      F:   [[0,21],[100,20]],
     }
   },
   blse: {
     label: 'BLSE',
     zones: {
-      AX: [10, 6], TIC: [10, 6], AMC: [22, 14], TPZ: [24, 18],
-      CFR: [12, 7], FEP: [14, 6], CTX: [16, 6], CAZ: [16, 14],
-      CFM: [16, 6], FOX: [28, 26], ETP: [34, 30], MEM: [36, 32],
-      CTV: [29, 30], MEC: [26, 23], TEM: [24, 21],
-      CN: [23, 22], TOB: [24, 21], AK: [21, 19],
-      OFX: [37, 31], SXT: [29, 30], FF: [29, 28], F: [21, 20],
+      AX:  [[0,10],[100,6]],
+      TIC: [[0,10],[100,6]],
+      CFR: [[0,12],[100,7]],
+      FEP: [[0,14],[100,6]],
+      CTX: [[0,16],[10,13],[100,6]],
+      CAZ: [[0,16],[10,13],[100,6]],
+      CFM: [[0,16],[10,13],[100,6]],
+      AMC: [[0,22],[30,22],[70,14],[100,14]],
+      TPZ: [[0,24],[80,24],[100,18]],
+      MEC: [[0,26],[100,23]],
+      FOX: [[0,28],[100,26]],
+      ETP: [[0,34],[100,30]],
+      MEM: [[0,36],[100,32]],
+      CTV: [[0,29],[100,30]],
+      TEM: [[0,24],[100,21]],
+      AK:  [[0,21],[100,21]],
+      CN:  [[0,23],[100,22]],
+      TOB: [[0,24],[100,21]],
+      OFX: [[0,37],[100,31]],
+      SXT: [[0,29],[100,30]],
+      FF:  [[0,29],[100,28]],
+      F:   [[0,21],[100,20]],
     }
   },
   kpc: {
     label: 'KPC',
     zones: {
-      AX: [8, 6], TIC: [8, 6], AMC: [10, 6], TPZ: [10, 6],
-      CFR: [8, 6], FEP: [14, 6], CTX: [10, 6], CAZ: [10, 6],
-      CFM: [10, 6], FOX: [16, 6], ETP: [12, 6], MEM: [24, 6],
-      CTV: [29, 28], MEC: [14, 6], TEM: [14, 6],
-      CN: [23, 22], TOB: [24, 21], AK: [21, 19],
-      OFX: [37, 31], SXT: [29, 30], FF: [29, 25], F: [21, 20],
+      AX:  [[0,8],[100,6]],
+      TIC: [[0,8],[100,6]],
+      AMC: [[0,10],[100,6]],
+      TPZ: [[0,10],[100,6]],
+      CFR: [[0,8],[100,6]],
+      FEP: [[0,12],[100,6]],
+      CTX: [[0,10],[100,6]],
+      CAZ: [[0,10],[100,6]],
+      CFM: [[0,10],[100,6]],
+      FOX: [[0,16],[30,13],[100,6]],
+      ETP: [[0,12],[100,6]],
+      MEM: [[0,24],[30,20],[60,13],[100,6]],
+      CTV: [[0,29],[100,28]],
+      MEC: [[0,14],[100,6]],
+      TEM: [[0,14],[100,6]],
+      AK:  [[0,21],[100,21]],
+      CN:  [[0,23],[100,22]],
+      TOB: [[0,24],[100,21]],
+      OFX: [[0,37],[100,31]],
+      SXT: [[0,29],[100,30]],
+      FF:  [[0,29],[100,25]],
+      F:   [[0,21],[100,20]],
     }
   }
 };
@@ -47,17 +93,29 @@ let currentSpectre = 'pase';
 let currentIntensity = 0;
 
 // ============================================================
-// ZONE MATH
+// KEYFRAME INTERPOLATION
 // ============================================================
 function getZoneDiameter(atbId, spectre, intensity) {
-  const range = PHENOTYPES[spectre].zones[atbId];
-  if (!range) return 30;
-  const t = intensity / 100;
-  return range[0] + (range[1] - range[0]) * t;
+  const keyframes = PHENOTYPES[spectre].zones[atbId];
+  if (!keyframes) return 30;
+
+  // Find surrounding keyframes
+  if (intensity <= keyframes[0][0]) return keyframes[0][1];
+  if (intensity >= keyframes[keyframes.length - 1][0]) return keyframes[keyframes.length - 1][1];
+
+  for (let i = 0; i < keyframes.length - 1; i++) {
+    const [t0, v0] = keyframes[i];
+    const [t1, v1] = keyframes[i + 1];
+    if (intensity >= t0 && intensity <= t1) {
+      if (t1 === t0) return v0;
+      const t = (intensity - t0) / (t1 - t0);
+      return v0 + (v1 - v0) * t;
+    }
+  }
+  return keyframes[keyframes.length - 1][1];
 }
 
 function zoneToSvgRadius(diameter) {
-  // Map zone diameter [6, 36] → SVG radius [22, 48]
   return Math.max(22, 22 + (diameter - 6) * 0.87);
 }
 
@@ -142,17 +200,14 @@ function updateGuideZones() {
     el.setAttribute('fill', statusFill(status));
   });
 
-  // Update title
   const label = PHENOTYPES[currentSpectre].label;
   const intensityLabel = currentIntensity < 30 ? 'bas niveau' : currentIntensity < 70 ? 'niveau intermédiaire' : 'haut niveau';
   document.getElementById('guide-title').textContent = `${label} — ${intensityLabel}`;
 
-  // Update spectre buttons
   document.querySelectorAll('.spectre-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.spectre === currentSpectre);
   });
 
-  // Update intensity display
   document.getElementById('intensity-value').textContent = `${Math.round(currentIntensity)}%`;
 }
 
@@ -163,7 +218,6 @@ function initGuide() {
   renderGuideSquarePlate();
   renderGuideRoundPlate();
 
-  // Spectre buttons
   document.querySelectorAll('.spectre-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       currentSpectre = btn.dataset.spectre;
@@ -171,7 +225,6 @@ function initGuide() {
     });
   });
 
-  // Intensity slider
   const slider = document.getElementById('intensity-slider');
   slider.addEventListener('input', () => {
     currentIntensity = parseFloat(slider.value);
