@@ -190,139 +190,86 @@ section.active { display: flex; }
 .coming-soon { text-align: center; color: var(--text-muted); font-size: 1.1rem; }
 .coming-soon h2 { color: var(--text); margin-bottom: 0.5rem; }
 
-/* ===== GUIDE — β-LACTAMASES ===== */
-#guide { gap: 1rem; }
+/* ===== GUIDE — SIMULATEUR β-LACTAMASES ===== */
+#guide { gap: 0.5rem; }
 
-.guide-steps {
-  display: flex; justify-content: center; gap: 0.5rem;
-  flex-shrink: 0; padding: 0.25rem 0;
-}
-.guide-step {
-  padding: 0.4rem 1.2rem; border-radius: 8px; font-size: 0.82rem; font-weight: 600;
-  background: var(--bg-button); color: var(--text-muted);
-  border: 1.5px solid rgba(255,255,255,0.06);
-  cursor: pointer; transition: all 0.2s;
-}
-.guide-step:hover { color: var(--text); border-color: rgba(255,255,255,0.15); }
-.guide-step.active { background: rgba(255,255,255,0.1); color: var(--text); border-color: rgba(255,255,255,0.2); }
-.guide-step.done { color: var(--green); border-color: color-mix(in srgb, var(--green) 30%, transparent); }
-
-.guide-content {
-  flex: 1; display: flex; align-items: center; justify-content: center;
-  min-height: 0; overflow-y: auto; padding: 0.5rem 0;
-}
-
-/* Step 0: question initiale */
-.guide-question {
-  text-align: center; max-width: 700px;
-}
-.guide-question h2 {
-  font-size: 2rem; font-weight: 700; margin-bottom: 0.75rem;
+.guide-header { text-align: center; flex-shrink: 0; padding: 0.25rem 0; }
+.guide-title {
+  font-size: 1.5rem; font-weight: 700;
   background: linear-gradient(135deg, var(--text), var(--accent));
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
-.guide-question p { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; line-height: 1.6; }
-.guide-disc-highlight {
-  display: inline-flex; align-items: center; gap: 0.4rem;
-  background: rgba(255,255,255,0.08); padding: 0.2rem 0.7rem; border-radius: 6px;
-  font-weight: 700; font-family: 'Courier New', monospace; font-size: 1.1rem;
+
+.guide-panels {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  gap: 2rem; min-height: 0;
 }
-.guide-disc-dot {
-  width: 10px; height: 10px; border-radius: 50%;
+.guide-plate {
+  filter: drop-shadow(0 4px 24px rgba(0,0,0,0.4));
+  max-height: calc(100vh - 300px); width: auto;
+}
+#guide-square { height: min(48vh, 440px); }
+#guide-round { height: min(38vh, 350px); }
+
+.guide-controls {
+  flex-shrink: 0; display: flex; flex-direction: column; gap: 0.6rem;
+  padding: 0.5rem 2rem; max-width: 700px; margin: 0 auto; width: 100%;
 }
 
-.guide-choices {
-  display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;
-  flex-wrap: wrap;
+.guide-control-row {
+  display: flex; align-items: center; gap: 0.75rem;
 }
-.guide-choice {
-  background: var(--bg-card); border: 2px solid rgba(255,255,255,0.08);
-  border-radius: 14px; padding: 1.25rem 2rem; cursor: pointer;
-  transition: all 0.25s; text-align: center; min-width: 180px;
-}
-.guide-choice:hover { border-color: rgba(255,255,255,0.25); transform: translateY(-2px); }
-.guide-choice h3 { font-size: 1.3rem; margin-bottom: 0.3rem; }
-.guide-choice p { font-size: 0.82rem; color: var(--text-muted); }
-.guide-choice.green { border-color: color-mix(in srgb, var(--green) 40%, transparent); }
-.guide-choice.green:hover { border-color: var(--green); box-shadow: 0 0 20px color-mix(in srgb, var(--green) 15%, transparent); }
-.guide-choice.red { border-color: color-mix(in srgb, var(--red) 40%, transparent); }
-.guide-choice.red:hover { border-color: var(--red); box-shadow: 0 0 20px color-mix(in srgb, var(--red) 15%, transparent); }
 
-/* Step 1: classes */
-.guide-classes {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
-  max-width: 800px; width: 100%;
+.guide-control-label {
+  font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;
+  letter-spacing: 0.08em; min-width: 70px; text-align: right; font-weight: 600;
 }
-.guide-class-card {
-  background: var(--bg-card); border: 2px solid rgba(255,255,255,0.08);
-  border-radius: 14px; padding: 1.25rem 1.5rem; cursor: pointer;
-  transition: all 0.25s;
-}
-.guide-class-card:hover { transform: translateY(-2px); }
-.guide-class-header {
-  display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem;
-}
-.guide-class-badge {
-  font-size: 1.4rem; font-weight: 800; padding: 0.2rem 0.6rem;
-  border-radius: 8px; font-family: 'Courier New', monospace;
-}
-.guide-class-name { font-size: 1rem; font-weight: 600; }
-.guide-class-key {
-  font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;
-}
-.guide-class-key strong { color: var(--text); }
 
-/* Step 2: spectre */
-.guide-spectre {
-  max-width: 850px; width: 100%;
+/* Spectre buttons */
+.spectre-buttons { display: flex; gap: 0.3rem; }
+.spectre-btn {
+  background: var(--bg-button); border: 1.5px solid rgba(255,255,255,0.08);
+  color: var(--text-muted); padding: 0.4rem 1rem; border-radius: 8px;
+  cursor: pointer; font-size: 0.82rem; font-weight: 600; transition: all 0.2s;
 }
-.guide-spectre-title {
-  text-align: center; margin-bottom: 1rem;
+.spectre-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+.spectre-btn.active {
+  color: #fff; background: rgba(255,255,255,0.1);
+  border-color: var(--accent); box-shadow: 0 0 12px rgba(251,191,36,0.15);
 }
-.guide-spectre-title h2 { font-size: 1.4rem; font-weight: 700; }
-.guide-spectre-title .class-tag {
-  display: inline-block; padding: 0.15rem 0.6rem; border-radius: 6px;
-  font-weight: 800; font-family: 'Courier New', monospace; font-size: 1rem;
-  margin-right: 0.5rem;
-}
-.guide-spectre-cards { display: flex; flex-direction: column; gap: 0.75rem; }
-.guide-spectre-card {
-  background: var(--bg-card); border: 1.5px solid rgba(255,255,255,0.08);
-  border-radius: 12px; padding: 1rem 1.25rem;
-  display: flex; align-items: flex-start; gap: 1rem;
-}
-.spectre-name {
-  font-size: 1.05rem; font-weight: 700; min-width: 160px; flex-shrink: 0;
-}
-.spectre-pattern {
-  font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;
-}
-.spectre-pattern strong { color: var(--text); }
-.spectre-atb {
-  display: inline-flex; padding: 0.1rem 0.4rem; border-radius: 4px;
-  font-family: 'Courier New', monospace; font-weight: 700; font-size: 0.8rem;
-  margin: 0 0.1rem;
-}
-.spectre-atb.s { background: color-mix(in srgb, var(--green) 20%, transparent); color: var(--green); }
-.spectre-atb.r { background: color-mix(in srgb, var(--red) 20%, transparent); color: var(--red); }
 
-.guide-back {
-  display: inline-flex; align-items: center; gap: 0.3rem;
-  background: none; border: 1.5px solid rgba(255,255,255,0.1); color: var(--text-muted);
-  padding: 0.4rem 1rem; border-radius: 8px; cursor: pointer;
-  font-size: 0.8rem; transition: all 0.2s; margin-bottom: 1rem;
+/* Intensity slider */
+.intensity-slider {
+  flex: 1; -webkit-appearance: none; appearance: none;
+  height: 6px; border-radius: 3px;
+  background: linear-gradient(90deg, var(--green), var(--orange), var(--red));
+  outline: none; cursor: pointer;
 }
-.guide-back:hover { color: var(--text); border-color: rgba(255,255,255,0.25); }
+.intensity-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: #fff; border: 2px solid var(--accent);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3); cursor: pointer;
+}
+.intensity-slider::-moz-range-thumb {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: #fff; border: 2px solid var(--accent);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3); cursor: pointer;
+}
+.intensity-value {
+  font-size: 0.8rem; color: var(--text-muted); min-width: 35px; text-align: right;
+  font-family: 'Courier New', monospace; font-weight: 700;
+}
 
 /* Guide responsive */
 @media (max-width: 900px) {
-  .guide-question h2 { font-size: 1.4rem; }
-  .guide-classes { grid-template-columns: 1fr; max-width: 400px; }
-  .guide-choices { flex-direction: column; align-items: center; }
-  .guide-choice { min-width: 160px; padding: 1rem 1.5rem; }
-  .guide-spectre-card { flex-direction: column; gap: 0.4rem; }
-  .spectre-name { min-width: 0; }
-  .guide-step { padding: 0.3rem 0.7rem; font-size: 0.72rem; }
+  .guide-title { font-size: 1.15rem; }
+  .guide-panels { flex-direction: column; gap: 0.75rem; }
+  .guide-plate { max-height: none; width: 100%; height: auto; }
+  #guide-square, #guide-round { height: auto; max-width: 95vw; }
+  .guide-controls { padding: 0.5rem 0.75rem; }
+  .guide-control-label { min-width: 55px; font-size: 0.65rem; }
+  .spectre-btn { padding: 0.3rem 0.6rem; font-size: 0.72rem; }
 }
 
 /* ===== HEADER RIGHT ===== */

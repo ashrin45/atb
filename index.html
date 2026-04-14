@@ -72,12 +72,30 @@
 
   <!-- SECTION 2: GUIDE -->
   <section id="guide">
-    <div class="guide-steps" id="guide-steps">
-      <div class="guide-step active" data-step="0">β-lactamase ?</div>
-      <div class="guide-step" data-step="1">Classe ?</div>
-      <div class="guide-step" data-step="2">Spectre ?</div>
+    <div class="guide-header">
+      <h2 class="guide-title" id="guide-title">Pénicillinase — bas niveau</h2>
     </div>
-    <div class="guide-content" id="guide-content"></div>
+
+    <div class="guide-panels">
+      <svg id="guide-square" class="plate-svg guide-plate" viewBox="0 0 460 460"></svg>
+      <svg id="guide-round" class="plate-svg guide-plate" viewBox="0 0 380 380"></svg>
+    </div>
+
+    <div class="guide-controls">
+      <div class="guide-control-row">
+        <span class="guide-control-label">Spectre</span>
+        <div class="spectre-buttons">
+          <button class="spectre-btn active" data-spectre="pase">Pénicillinase</button>
+          <button class="spectre-btn" data-spectre="blse">BLSE</button>
+          <button class="spectre-btn" data-spectre="kpc">KPC</button>
+        </div>
+      </div>
+      <div class="guide-control-row">
+        <span class="guide-control-label">Intensité</span>
+        <input type="range" id="intensity-slider" min="0" max="100" value="0" class="intensity-slider">
+        <span class="intensity-value" id="intensity-value">0%</span>
+      </div>
+    </div>
   </section>
 
   <!-- SECTION 3: DECISION TREE -->
