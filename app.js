@@ -3,7 +3,7 @@
 // ============================================================
 let activeFamilies = new Set();
 let selectedDisc = null;
-let helpMode = false;
+let helpMode = true;
 
 // ============================================================
 // SVG HELPERS
